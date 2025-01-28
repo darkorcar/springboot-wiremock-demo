@@ -14,7 +14,12 @@ class WeatherServiceController {
 
     @GetMapping("/weather")
     fun weather(@RequestParam("city") city: String): String {
-        return weatherServiceClient.getWeather(city)
+        return try {
+            weatherServiceClient.getWeather(city)
+        }
+        catch (e: Exception) {
+            "Error calling weather data service: ${e.message}"
+        }
     }
 
 }

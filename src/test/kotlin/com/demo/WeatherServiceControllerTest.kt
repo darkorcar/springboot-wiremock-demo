@@ -31,4 +31,14 @@ class WeatherServiceControllerTest {
             .andExpect(content().string("""{"temperature": "15°C"}"""))
     }
 
+    @Test
+    fun `should handle exceptions gracefully`() {
+        val city = "InvalidCity"
+        val ERROR_MESSAGE = "ERROR MESSAGE"
+        every { weatherServiceClient.getWeather(city) } throws WeatherServiceClientException(ERROR_MESSAGE)
+
+        mockMvc.perform(get("/weather").param("city", city))
+            .andExpect(status().isOk)
+            .andExpect(content().string("Error calling weather data service: $ERROR_MESSAGE"))
+    }
 }

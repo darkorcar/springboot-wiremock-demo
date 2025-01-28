@@ -11,8 +11,13 @@ class WeatherServiceClient(private val restTemplate: RestTemplate) {
     private lateinit var weatherApiUrl: String
 
     fun getWeather(city: String): String {
-        val url = "$weatherApiUrl/weather?city=$city"
-        return restTemplate.getForObject(url, String::class.java) ?: "No data available"
+        return try {
+            val url = "$weatherApiUrl/weather?city=$city"
+            restTemplate.getForObject(url, String::class.java) ?: "No data available for city: $city"
+        }
+        catch (e: Exception) {
+            throw WeatherServiceClientException(e.message ?: "Error calling weather data service")
+        }
     }
 
 }
