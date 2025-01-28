@@ -1,5 +1,7 @@
-package com.demo
+package com.demo.weatherclient
 
+import com.demo.watherclient.WeatherServiceClient
+import com.demo.watherclient.WeatherServiceClientException
 import com.github.tomakehurst.wiremock.client.WireMock.*
 import org.junit.jupiter.api.Test
 import org.springframework.beans.factory.annotation.Autowired

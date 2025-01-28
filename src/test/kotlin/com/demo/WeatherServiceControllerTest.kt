@@ -1,5 +1,7 @@
 package com.demo
 
+import com.demo.watherclient.WeatherServiceClient
+import com.demo.watherclient.WeatherServiceClientException
 import com.ninjasquad.springmockk.MockkBean
 import io.mockk.every
 import org.junit.jupiter.api.Test
