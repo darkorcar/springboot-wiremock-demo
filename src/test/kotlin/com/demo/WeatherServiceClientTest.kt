@@ -1,11 +1,16 @@
 package com.demo
 
 import org.junit.jupiter.api.Test
+import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.boot.test.context.SpringBootTest
 import kotlin.test.assertEquals
 
+
+@SpringBootTest
 class WeatherServiceClientTest {
 
-    private val weatherServiceClient: WeatherServiceClient = WeatherServiceClient()
+    @Autowired
+    private lateinit var weatherServiceClient: WeatherServiceClient
 
     @Test
     fun `should return mocked weather data`() {
